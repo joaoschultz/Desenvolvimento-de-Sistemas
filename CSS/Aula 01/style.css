@@ -1,13 +1,15 @@
 /* Seletor de todos os elementos */
-*{
+* {
     margin: 0;
 }
+
 /* Seletor de elemento */
-h3{
-    color: yellow; 
+h3 {
+    color: yellow;
 }
+
 /* Seletor de Classe */
-.texto{
+.texto {
     /* Altera a cor do texto */
     color: brown;
     /* Altera o tamanho do texto */
@@ -21,14 +23,16 @@ h3{
     /* Altera decoração do texto */
     text-decoration: underline;
 }
+
 /* Seletor de ID - Identificador */
-#texto{
-color: red; 
-font-size: medium;
-text-align: end;
+#texto {
+    color: red;
+    font-size: medium;
+    text-align: end;
 }
+
 /* Atributo de Espaçamento */
-.box{
+.box {
     /* Define a largura - vw */
     width: 200px;
     /* Define a altura - vh */
@@ -42,7 +46,7 @@ text-align: end;
 
 }
 
-.position{
+.position {
     /* A forma de posicionamento */
     display: flex;
     /* Posicionar verticalmente */
@@ -51,8 +55,52 @@ text-align: end;
     justify-content: center;
 }
 
-.position2{
+.position2 {
     position: absolute;
     top: 10px;
     right: 10px;
+}
+
+/* Corpo do HTML - toda a página */
+body {
+    /* Altera a cor de fundo */
+    background-color: beige;
+    /* Altera a imagem de fundo */
+    /* background-image: url(https://media1.tenor.com/m/4A_8lCnwJcEAAAAC/sonic-the.gif); */
+    background-color: azure;
+    /* Define a repetição das imagens no fundo */
+    background-repeat: no-repeat;
+    /* Define a posição da imagem */
+    /* background-position: bottom 10px right 10px; */
+
+    /* Define o tamanho da imagem no fundo */
+    background-size: 100vw 100vh;
+}
+
+.visual {
+    background-color: blue;
+    /*  Define a opacidade */
+    opacity: 75%;
+    /* Adiciona sombra - Y,X, Blur, Spreand */
+    box-shadow: 15px 15px 10px 1px;
+    /* Arrendonda o elemneto */
+    border-radius: 10px;
+    /* Transforma o elemento - rotacionar */
+    transform: rotate(1turn);
+    /* Adiciona uma transição  */
+    transition: width 2s 2s, height 2s 2s, transform 2s;
+}
+
+.visual:hover{
+    width: 300px;
+    height: 300px;
+    backgorund-color: green;
+    transform: rotate(10turn); 
+}
+
+.cursor{
+    /* Controle do scroll do elemento */
+    overflow-y: auto;
+    overflow-x: auto; 
+    cursor: pointer;
 }

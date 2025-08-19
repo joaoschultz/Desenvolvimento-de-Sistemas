@@ -1,0 +1,15 @@
+.opcoes-imagens {
+    display: flex;
+    justify-content: center;    /* Centraliza horizontalmente */
+    gap: 20px;                  /* Espaço entre as imagens */
+    margin-top: 20px;
+    flex-wrap: wrap;            /* Para que quebre linha em telas pequenas */
+  }
+  
+  .opcoes-imagens img {
+    max-width: 300px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  

@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <title>Cardápio Insano</title>
   <style>
+      body {
+    background-image: url("./bordo.jpeg");
+    background-repeat: no-repeat; /* Evita a repetição da imagem */
+    background-size: cover; /* Ajusta a imagem para cobrir todo o elemento */
+    background-color: white; /* Cor de fundo de fallback */
+    /* Outras propriedades de estilo podem ser adicionadas aqui */
+  }
     h1 {
       text-align: center;
       color: white;
@@ -62,17 +69,36 @@
   </style>
 </head>
 <body>
-
   <h1>Cardápio Insano🔥</h1>
   <h2>Bar do Galo</h2>
-  <h3>Opções🔥</h3>
   
-  <div class="opcoes-imagens">  
-    <img src="./images-_1_ (1).jpg" alt="Opção 1"> 
-    <img src="./DSC_6770.jpg" alt="Opção 2">
-    <img src="./images_1.jpg" alt="Opção 3">
-  </div>
-  
-  <h4>Não gostou da comida ou agluma coisa?</h4>
+  <main>
+    <section class="menu">
+      <h3>Opções do Cardápio🔥</h3>
+      <div class="opcoes-imagens">
+        <figure>
+          <img src="./images-_1_ (1).jpg" alt="Prato de massa com molho vermelho e queijo parmesão ralado">
+          <figcaption>Massa</figcaption>
+        </figure>
+        <figure>
+          <img src="./DSC_6770.jpg" alt="Hamburguer artesanal com batatas fritas">
+          <figcaption>Hamburguer</figcaption>
+        </figure>
+        <figure>
+          <img src="./images_1.jpg " alt="Prato de frutos do mar com camarões, lula e arroz">
+          <figcaption>Frutos do Mar</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Não gostou da comida ou teve algum problema?</p>
+    <div class="contato-whatsapp">
+      <p>Entre em contato conosco:</p>
+      <a href="https://wa.me/5511945323585" target="_blank">Fale via WhatsApp</a>
+    </div>
+  </footer>
+    
 </body>
 </html>

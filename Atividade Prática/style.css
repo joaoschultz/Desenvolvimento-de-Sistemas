@@ -1,15 +1,28 @@
 .opcoes-imagens {
-    display: flex;
-    justify-content: center;    /* Centraliza horizontalmente */
-    gap: 20px;                  /* Espaço entre as imagens */
-    margin-top: 20px;
-    flex-wrap: wrap;            /* Para que quebre linha em telas pequenas */
-  }
-  
+  display: flex;
+  gap: 20px; /* espaço entre as imagens */
+  justify-content: center; /* opcional: centraliza */
+}
+
+.opcoes-imagens figure {
+  text-align: center;
+}
   .opcoes-imagens img {
     max-width: 300px;
     width: 100%;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
-  
+
+  .contato-whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre o texto e o link */
+  }
+  footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px;
+  }

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+        // Não utilize scripts aqui para manipulação DOM, pois o HTML ainda não foi carregado.
+    </script>
+</head>
+<body>
+    <p id="Paragrafo">Script que escreva Olá:</p>
+    <p id="id">Seletor de ID</p>
+    <p class="classe">Seletor de Classe 1</p>
+    <p class="classe">Seletor de Classe 2</p>
+    <h1 id="text">Text</h1>
+    <div id="div">
+        Texto de Exemplo    
+    </div>
+    <img 
+        id="Bolo" 
+        src="https://static.vecteezy.com/ti/fotos-gratis/t1/15759381-bolo-de-aniversario-coberto-com-confeitos-foto.jpg" 
+        alt="Bolo de Aniversário"
+    />
+    
+    <!-- Botão que troca cor do fundo com JS via addEventListener -->
+    <button id="fundo">Trocar a cor de fundo</button>
+
+    <!-- Botão que chama a função trocar() para mudar cor do fundo -->
+    <button onclick="trocar()">Troca de fundo 2</button>
+
+    <script>
+        // Mostra "Hello World!" no console do navegador
+        console.log("Hello World!"); 
+
+        // Exibe "Olá" na página (document.write deve ser evitado após o carregamento)
+        document.write("Olá"); 
+
+        // Seleção por ID
+        const p = document.getElementById("Paragrafo");
+        console.log(p); // Mostra o elemento <p id="Paragrafo">
+
+        // Seleção por seletor CSS
+        const id = document.querySelector("#id");          // Primeiro com id="id"
+        const classe = document.querySelector(".classe");  // Primeiro com class="classe"
+        console.log(id);
+        console.log(classe);
+
+        // Seleciona todos elementos com a classe "classe"
+        const classes = document.querySelectorAll(".classe");
+        console.log(classes); // Mostra NodeList com todos os elementos de classe "classe"
+
+        // Mostra o texto interno do elemento com id "id"
+        console.log(id.innerText); 
+
+        // Manipulação de texto e HTML
+        let text = document.getElementById("text"); 
+        console.log(text.textContent); // Mostra "Text"
+
+        // Altera o texto do elemento (sem tags HTML)
+        text.textContent = "Hello world Manipulado!";
+
+        // Manipula conteúdo HTML do <div id="div">
+        let div = document.getElementById("div");
+        console.log(div.innerHTML); // Conteúdo atual do div
+        div.innerHTML = "<h3>Manipulação de HTML</h3>"; // Substitui conteúdo
+        console.log(div.innerHTML); // Novo conteúdo do div
+
+        // Manipulação de atributos
+        let imgBolo = document.getElementById("Bolo"); 
+
+        // Mostra o valor do atributo src
+        console.log(imgBolo.getAttribute("src")); 
+
+        // Altera o src da imagem para outra URL
+        imgBolo.setAttribute(
+            "src", 
+            "https://img.freepik.com/free-photo/industrial-metal-drill-machine-metalworking-workshop_342744-520.jpg?semt=ais_incoming&w=740&q=80"
+        );
+
+        // Adiciona atributo alt para acessibilidade
+        imgBolo.setAttribute("alt", "Imagem CNC");
+
+        // Remove o atributo alt
+        imgBolo.removeAttribute("alt");
+
+        // Manipulação de CSS via JS
+        imgBolo.style.borderRadius = "100px"; 
+        imgBolo.style.border = "5px solid black"; 
+
+        // Evento: troca a cor do fundo ao clicar no botão "fundo"
+        let fundo = document.getElementById("fundo");  
+        let troca = true; // flag para alternar cores
+
+        fundo.addEventListener("click", () => {
+            if (troca) {
+                document.body.style.backgroundColor = "grey"; 
+                troca = false;
+            } else {
+                document.body.style.backgroundColor = "red"; 
+                troca = true; 
+            }
+        });
+
+        // Segundo botão para trocar o fundo para verde
+        function trocar() {
+            document.body.style.backgroundColor = "green"; 
+        }
+    </script>
+
+    <!--
+    <script src="script.js"></script> 
+    Comentado porque não há arquivo script.js
+    -->
+</body>
+</html>

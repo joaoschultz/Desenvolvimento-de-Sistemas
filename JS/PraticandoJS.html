@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Praticando JS</title>
+    <style>
+        h1 {
+            color: #333;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        
+        .quadrado{
+            width: 100px;   
+            height: 100px;
+            background-color: blue;
+            margin-top: 20px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .blocoTexto {
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            width: 300px;
+            margin-bottom: 20px;
+            transition: opacity 0.3s ease;
+        }
+        #contador {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        #imagem {
+            width: 300px;
+            height: 200px;
+            margin-top: 20px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function alterarTexto() {
+            // Seleciona os elementos
+            const titulo = document.getElementById("titulo");
+            const paragrafo = document.getElementById("paragrafo");
+
+            // Altera os conteúdos
+            titulo.textContent = "Título Alterado";
+            paragrafo.textContent = "Novo parágrafo";
+        }
+
+        function alterarCorQuadrado(){
+            const quadrado = document.querySelector(".quadrado");
+
+            if (quadrado.style.backgroundColor === "blue") {
+                quadrado.style.backgroundColor = "red";
+            } else {
+                quadrado.style.backgroundColor = "blue";
+            }       
+        }
+
+        function alternarVisibilidade() {
+            const bloco = document.getElementById("blocoTexto");
+
+            if (bloco.style.display === "none") {
+                bloco.style.display = "block";
+            } else {
+                bloco.style.display = "none";
+            }
+        }
+
+        // Contator
+        let contador = 0;
+        function incrementarContador() {
+            contador++;
+            document.getElementById("contador").textContent = contador;
+        }
+
+        // Exercício 5: Navegação entre Imagens
+        const imagens = [
+            "https://via.placeholder.com/300x200/ff7f7f/333333?text=Imagem+1",
+            "https://via.placeholder.com/300x200/7fbfff/333333?text=Imagem+2",
+            "https://via.placeholder.com/300x200/7fff7f/333333?text=Imagem+3"
+        ];
+        let indiceImagem = 0;
+
+        function proximaImagem() {
+            indiceImagem = (indiceImagem + 1) % imagens.length;
+            document.getElementById("imagem").src = imagens[indiceImagem];
+        }
+    </script> 
+   
+    <h1>Exercício 1</h1>
+    <h2 id="titulo">Título Original</h2>
+    <p id="paragrafo">Este é o parágrafo original com algum texto inicial.</p>
+    <button onclick="alterarTexto()">Alterar Conteúdo</button>
+
+    <h1>Exercício 2</h1>
+    <div class="quadrado"></div>
+    <button onclick="alterarCorQuadrado()">Alterar Cor</button>
+
+    <h1>Exercício 3</h1>   
+    <div id="blocoTexto" class="blocoTexto">
+        Este é o bloco de texto que será mostrado ou ocultado ao clicar no botão.
+    </div>
+    <button onclick="alternarVisibilidade()">Mostrar/Ocultar Texto</button>
+
+    <h1>Exercício 4: Contador Interativo</h1>
+    <div id="contador">0</div>
+    <button onclick="incrementarContador()">Incrementar</button>
+
+    <h1>Exercício 5: Navegação entre Imagens</h1>
+    <img id="imagem" src="https://via.placeholder.com/300x200/ff7f7f/333333?text=Imagem+1" alt="Imagem">
+    <br>
+    <button onclick="proximaImagem()">Próxima Imagem</button>
+
+</body>
+</html>

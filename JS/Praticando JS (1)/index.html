@@ -19,7 +19,7 @@
             background-color: blue;
             margin-top: 20px;
             border-radius: 8px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.1s ease;
         }
         .blocoTexto {
             padding: 20px;
@@ -46,16 +46,20 @@
 </head>
 <body>
     <script>
+        // Altera texto
         function alterarTexto() {
-            // Seleciona os elementos
             const titulo = document.getElementById("titulo");
             const paragrafo = document.getElementById("paragrafo");
 
-            // Altera os conteúdos
-            titulo.textContent = "Título Alterado";
-            paragrafo.textContent = "Novo parágrafo";
+            if (titulo.textContent === "Título Original") {
+                titulo.textContent = "Título Alterado";
+                paragrafo.textContent = "Novo parágrafo";
+            } else {
+                titulo.textContent = "Título Original";
+                paragrafo.textContent = "Parágrafo original";
+            }
         }
-
+        // Altera a cor do elemento visual 
         function alterarCorQuadrado(){
             const quadrado = document.querySelector(".quadrado");
 
@@ -65,7 +69,7 @@
                 quadrado.style.backgroundColor = "blue";
             }       
         }
-
+        // Altera a visibilidade do bloco de texto
         function alternarVisibilidade() {
             const bloco = document.getElementById("blocoTexto");
 
@@ -75,22 +79,31 @@
                 bloco.style.display = "none";
             }
         }
-
         // Contator
         let contador = 0;
+
         function incrementarContador() {
             contador++;
             document.getElementById("contador").textContent = contador;
         }
 
-        // Exercício 5: Navegação entre Imagens
-        const imagens = [
-            "https://via.placeholder.com/300x200/ff7f7f/333333?text=Imagem+1",
-            "https://via.placeholder.com/300x200/7fbfff/333333?text=Imagem+2",
-            "https://via.placeholder.com/300x200/7fff7f/333333?text=Imagem+3"
-        ];
-        let indiceImagem = 0;
+        function decrementarContador() {
+            contador--;
+            document.getElementById("contador").textContent = contador;
+        }
 
+        // Navegação entre Imagens
+        const imagens = [
+ 
+            "https://t4.ftcdn.net/jpg/00/38/59/37/240_F_38593753_nXTs9b7WedJeoCyCN0XKPbzUnXdhvt4Y.jpg",
+            "https://t4.ftcdn.net/jpg/01/19/26/97/240_F_119269741_LWu6jl5Pg5p30Y415haInyhH2qUvJwXV.jpg",
+            "https://t4.ftcdn.net/jpg/04/10/16/91/240_F_410169189_NM0JsuyUjeOKazgWjw5rmZ2NcuvxUMci.jpg"
+        ];
+
+        let indiceImagem = 0;
+        document.getElementById("imagem").src = imagens[indiceImagem];
+
+        // Próxima imagem
         function proximaImagem() {
             indiceImagem = (indiceImagem + 1) % imagens.length;
             document.getElementById("imagem").src = imagens[indiceImagem];
@@ -99,25 +112,26 @@
    
     <h1>Exercício 1</h1>
     <h2 id="titulo">Título Original</h2>
-    <p id="paragrafo">Este é o parágrafo original com algum texto inicial.</p>
-    <button onclick="alterarTexto()">Alterar Conteúdo</button>
-
+    <p id="paragrafo">Este é o parágrafo original</p>
+    <button onclick="alterarTexto()">Alterar</button>
+      
     <h1>Exercício 2</h1>
     <div class="quadrado"></div>
     <button onclick="alterarCorQuadrado()">Alterar Cor</button>
-
+     
     <h1>Exercício 3</h1>   
     <div id="blocoTexto" class="blocoTexto">
-        Este é o bloco de texto que será mostrado ou ocultado ao clicar no botão.
+        Bloco de texto
     </div>
-    <button onclick="alternarVisibilidade()">Mostrar/Ocultar Texto</button>
+    <button onclick="alternarVisibilidade()">Mostrar e Ocultar Texto</button>
 
     <h1>Exercício 4: Contador Interativo</h1>
     <div id="contador">0</div>
     <button onclick="incrementarContador()">Incrementar</button>
+    <button onclick="decrementarContador()">Decrementar</button>
 
     <h1>Exercício 5: Navegação entre Imagens</h1>
-    <img id="imagem" src="https://via.placeholder.com/300x200/ff7f7f/333333?text=Imagem+1" alt="Imagem">
+    <img id="imagem" src= "https://t4.ftcdn.net/jpg/00/38/59/37/240_F_38593753_nXTs9b7WedJeoCyCN0XKPbzUnXdhvt4Y.jpg", alt="Imagem">
     <br>
     <button onclick="proximaImagem()">Próxima Imagem</button>
 

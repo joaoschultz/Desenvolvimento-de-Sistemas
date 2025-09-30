@@ -80,7 +80,7 @@ app.delete("/usuarios/id", (req,res) => {
     const index = usuarios.findIndex(u => u.id == id); 
 
     if(index == -1) {
-        res.status (404).send("Usuario nao encontrado")
+        res.status (404).send("Tarefa nao encontrado")
     }
 
     usuarios.splice(index, 1); 

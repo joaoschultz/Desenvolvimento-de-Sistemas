@@ -1,0 +1,177 @@
+/* ======= Reset e base ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f6f6f8;
+  color: #111318;
+  padding: 0 10%;
+}
+
+/* ======= Header ======= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #135bec;
+}
+
+.addTarefa {
+  margin-left: auto;
+  align-items: center;
+  gap: 6px;
+  background-color: #135bec;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.addTarefa:hover {
+  background-color: #0e4ecc;
+}
+
+/* ======= Título principal ======= */
+h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+/* ======= Barra de busca e filtros ======= */
+.Search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.Search input[type="text"] {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.Search input[type="text"]:focus {
+  border-color: #135bec;
+}
+
+.filtro {
+  background-color: #f1f1f1;
+  color: #333;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-weight: 500;
+}
+
+.filtro:hover {
+  background-color: #e0e0e0;
+}
+
+.filtro.ativo {
+  background-color: #135bec;
+  color: white;
+}
+
+/* ======= Tabela ======= */
+.tasks-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.tasks-table thead {
+  background-color: #f9fafb;
+}
+
+.tasks-table th,
+.tasks-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.tasks-table tr:hover {
+  background-color: #f5f8ff;
+}
+
+/* ======= Prioridades ======= */
+.prioridadeAlta,
+.prioridadeMedia,
+.prioridadeBaixa {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.prioridadeAlta {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.prioridadeMedia {
+  background-color: #fef9c3;
+  color: #a16207;
+}
+
+.prioridadeBaixa {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #135bec;
+  cursor: pointer;
+}
+
+
+
+tr:has(input[type="checkbox"]:checked) td:nth-child(4) {
+  opacity: 0.4;
+  /* ou o valor que quiser */
+  transition: opacity 0.2s ease;
+
+}
+
+tr:has(input[type="checkbox"]:checked) td:nth-child(2) {
+  opacity: 0.4;
+  /* ou o valor que quiser */
+  transition: opacity 0.2s ease;
+  text-decoration: line-through;
+}
+
+tr:has(input[type="checkbox"]:checked) td:nth-child(3) {
+  opacity: 0.4;
+  /* ou o valor que quiser */
+  transition: opacity 0.2s ease;
+  text-decoration: line-through;
+}

@@ -28,7 +28,11 @@ header {
   color: #135bec;
 }
 
+
 .addTarefa {
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-block;
   margin-left: auto;
   align-items: center;
   gap: 6px;
@@ -42,7 +46,7 @@ header {
   transition: background-color 0.2s ease-in-out;
 }
 
-.addTarefa:hover {
+.addTarefa:hover {  
   background-color: #0e4ecc;
 }
 
@@ -159,7 +163,6 @@ tr:has(input[type="checkbox"]:checked) td:nth-child(4) {
   opacity: 0.4;
   /* ou o valor que quiser */
   transition: opacity 0.2s ease;
-
 }
 
 tr:has(input[type="checkbox"]:checked) td:nth-child(2) {
@@ -174,4 +177,11 @@ tr:has(input[type="checkbox"]:checked) td:nth-child(3) {
   /* ou o valor que quiser */
   transition: opacity 0.2s ease;
   text-decoration: line-through;
+}
+
+tr:has(input[type="checkbox"]:checked) td:nth-child(5) {
+  opacity: 0.4;
+  /* ou o valor que quiser */
+  transition: opacity 0.2s ease;
+
 }

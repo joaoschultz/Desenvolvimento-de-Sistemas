@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Me Organiza</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    margin: 0;
+}
+.container {
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    margin: 40px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #0003;
+}
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+button:hover { background: #45a049; }
+.hidden { display: none; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background: #4CAF50;
+    color: white;
+}
+.menu-btn {
+    display: block;
+    width: 100%;
+    background: #2196F3;
+    margin-top: 10px;
+}
+.menu-btn:hover { background: #0b7dda; }
+.logout { background: #f44336; }
+.logout:hover { background: #d32f2f; }
+</style>
+</head>
+
+<body>
+
+
+<div id="login" class="container">
+    <h2>Login</h2>
+    <input id="loginUser" placeholder="Usuário">
+    <input id="loginPass" type="password" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
+    <p id="loginMsg" style="color:red;"></p>
+</div>
+
+<div id="menu" class="container hidden">
+    <h2>Bem-vindo, <span id="userName"></span></h2>
+    <button class="menu-btn" onclick="openPage('clientes')">Cadastro de Clientes</button>
+    <button class="menu-btn" onclick="openPage('servicos')">Cadastro de Serviços</button>
+    <button class="menu-btn" onclick="openPage('profissionais')">Cadastro de Profissionais</button>
+    <button class="menu-btn" onclick="openPage('agendamentos')">Agendamentos</button>
+    <button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<div id="cadastro-template" class="container hidden"></div>
+
+<div id="agendamentos" class="container hidden">
+    <h2>Agendamentos</h2>
+
+    <label>Cliente:</label>
+    <select id="agCliente"></select>
+
+    <label>Serviço:</label>
+    <select id="agServico"></select>
+
+    <label>Profissional:</label>
+    <select id="agProf"></select>
+
+    <label>Data:</label>
+    <input type="date" id="agData">
+
+    <label>Horário de início:</label>
+    <input type="time" id="agInicio">
+
+    <label>Duração (minutos):</label>
+    <input type="number" id="agDuracao" placeholder="Ex: 60">
+
+    <button onclick="salvarAgendamento()">Salvar Agendamento</button>
+
+    <p id="agMsg" style="color:red;"></p>
+
+    <button onclick="openPage('menu')">Voltar</button>
+
+    <h3>Lista de Agendamentos</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th><th>Início</th><th>Cliente</th><th>Serviço</th><th>Profissional</th><th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaAgendamentos"></tbody>
+    </table>
+</div>
+
+<script>
+
+function login() {
+    let u = loginUser.value.trim();
+    let p = loginPass.value.trim();
+
+    if (u === "admin" && p === "123") {
+        sessionStorage.setItem("user", u);
+        openPage("menu");
+    } else {
+        loginMsg.textContent = "Usuário ou senha incorretos.";
+    }
+}
+function logout() {
+    sessionStorage.removeItem("user");
+    openPage("login");
+}
+
+
+function openPage(id) {
+    document.querySelectorAll(".container").forEach(div => div.classList.add("hidden"));
+
+    if (["clientes", "servicos", "profissionais"].includes(id)) {
+        montarTelaCadastro(id);
+        return;
+    }
+
+    document.getElementById(id).classList.remove("hidden");
+
+    if (id === "menu") userName.textContent = sessionStorage.getItem("user");
+    if (id === "agendamentos") carregarAgendamentos();
+}
+
+
+let DB = {
+    clientes: JSON.parse(localStorage.getItem("clientes") || "[]"),
+    servicos: JSON.parse(localStorage.getItem("servicos") || "[]"),
+    profissionais: JSON.parse(localStorage.getItem("profissionais") || "[]"),
+    agendamentos: JSON.parse(localStorage.getItem("agendamentos") || "[]")
+};
+
+function salvarBD() {
+    for (let k in DB) localStorage.setItem(k, JSON.stringify(DB[k]));
+}
+
+
+function montarTelaCadastro(tipo) {
+    let div = document.getElementById("cadastro-template");
+    div.classList.remove("hidden");
+
+    div.innerHTML = `
+        <h2>Cadastro de ${tipo}</h2>
+        <input id="busca" placeholder="Buscar..." oninput="listar('${tipo}')">
+        <input id="novoItem" placeholder="Novo ${tipo}">
+        <button onclick="adicionar('${tipo}')">Adicionar</button>
+        <button onclick="openPage('menu')">Voltar</button>
+
+        <table>
+            <thead><tr><th>Nome</th><th>Ações</th></tr></thead>
+            <tbody id="tabela"></tbody>
+        </table>
+    `;
+
+    listar(tipo);
+}
+
+function listar(tipo) {
+    let busca = document.getElementById("busca").value.toLowerCase();
+    let tabela = document.getElementById("tabela");
+
+    tabela.innerHTML = "";
+
+    DB[tipo]
+        .filter(i => i.toLowerCase().includes(busca))
+        .forEach((item, index) => {
+            tabela.innerHTML += `
+                <tr>
+                    <td>${item}</td>
+                    <td>
+                        <button onclick="editar('${tipo}', ${index})">Editar</button>
+                        <button onclick="excluir('${tipo}', ${index})" style="background:#f44336">Excluir</button>
+                    </td>
+                </tr>
+            `;
+        });
+}
+
+function adicionar(tipo) {
+    let valor = novoItem.value.trim();
+    if (!valor) { alert("Digite um valor!"); return; }
+
+    DB[tipo].push(valor);
+    salvarBD();
+    listar(tipo);
+}
+
+function editar(tipo, i) {
+    let novo = prompt("Editar:", DB[tipo][i]);
+    if (novo) {
+        DB[tipo][i] = novo;
+        salvarBD();
+        listar(tipo);
+    }
+}
+
+function excluir(tipo, i) {
+    if (confirm("Excluir?")) {
+        DB[tipo].splice(i, 1);
+        salvarBD();
+        listar(tipo);
+    }
+}
+
+
+function carregarAgendamentos() {
+    agCliente.innerHTML = DB.clientes.map(c => `<option>${c}</option>`).join("");
+    agServico.innerHTML = DB.servicos.map(s => `<option>${s}</option>`).join("");
+    agProf.innerHTML = DB.profissionais.map(p => `<option>${p}</option>`).join("");
+
+    tabelaAgendamentos.innerHTML = DB.agendamentos
+        .sort((a, b) => (a.data + a.inicio).localeCompare(b.data + b.inicio))
+        .map(a => `
+            <tr>
+                <td>${a.data}</td>
+                <td>${a.inicio}</td>
+                <td>${a.cliente}</td>
+                <td>${a.servico}</td>
+                <td>${a.profissional}</td>
+                <td>${a.status}</td>
+            </tr>
+        `).join("");
+}
+
+function salvarAgendamento() {
+    let novo = {
+        cliente: agCliente.value,
+        servico: agServico.value,
+        profissional: agProf.value,
+        data: agData.value,
+        inicio: agInicio.value,
+        duracao: parseInt(agDuracao.value),
+        status: "Agendado"
+    };
+
+    if (!novo.data || !novo.inicio || !novo.duracao) {
+        agMsg.textContent = "Preencha todos os campos!";
+        return;
+    }
+
+
+    let inicioMin = horaParaMinutos(novo.inicio);
+    let fimMin = inicioMin + novo.duracao;
+
+    let conflito = DB.agendamentos.some(a => {
+        if (a.profissional !== novo.profissional) return false;
+        if (a.data !== novo.data) return false;
+
+        let ai = horaParaMinutos(a.inicio);
+        let af = ai + a.duracao;
+
+        return !(fimMin <= ai || inicioMin >= af);
+    });
+
+    if (conflito) {
+        agMsg.textContent = "Conflito: o profissional já possui agendamento nesse horário.";
+        return;
+    }
+
+    DB.agendamentos.push(novo);
+    salvarBD();
+    carregarAgendamentos();
+    agMsg.textContent = "";
+}
+
+function horaParaMinutos(h) {
+    let [H, M] = h.split(":").map(Number);
+    return H * 60 + M;
+}
+
+</script>
+
+</body>
+</html>

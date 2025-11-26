@@ -1,4 +1,4 @@
-/* ======= Reset e base ======= */
+
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ body {
   padding: 0 10%;
 }
 
-/* ======= Header ======= */
+
 header {
   display: flex;
   justify-content: space-between;
@@ -50,14 +50,13 @@ header {
   background-color: #0e4ecc;
 }
 
-/* ======= Título principal ======= */
+
 h1 {
   font-size: 2rem;
   font-weight: 900;
   margin-bottom: 20px;
 }
 
-/* ======= Barra de busca e filtros ======= */
 .Search {
   display: flex;
   flex-wrap: wrap;
@@ -100,7 +99,7 @@ h1 {
   color: white;
 }
 
-/* ======= Tabela ======= */
+
 .tasks-table {
   width: 100%;
   border-collapse: collapse;
@@ -125,7 +124,7 @@ h1 {
   background-color: #f5f8ff;
 }
 
-/* ======= Prioridades ======= */
+
 .prioridadeAlta,
 .prioridadeMedia,
 .prioridadeBaixa {
@@ -161,27 +160,24 @@ input[type="checkbox"] {
 
 tr:has(input[type="checkbox"]:checked) td:nth-child(4) {
   opacity: 0.4;
-  /* ou o valor que quiser */
+ 
   transition: opacity 0.2s ease;
 }
 
 tr:has(input[type="checkbox"]:checked) td:nth-child(2) {
   opacity: 0.4;
-  /* ou o valor que quiser */
   transition: opacity 0.2s ease;
   text-decoration: line-through;
 }
 
 tr:has(input[type="checkbox"]:checked) td:nth-child(3) {
   opacity: 0.4;
-  /* ou o valor que quiser */
   transition: opacity 0.2s ease;
   text-decoration: line-through;
 }
 
 tr:has(input[type="checkbox"]:checked) td:nth-child(5) {
   opacity: 0.4;
-  /* ou o valor que quiser */
   transition: opacity 0.2s ease;
 
 }
